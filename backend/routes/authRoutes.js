@@ -24,17 +24,14 @@ const authLimiter = rateLimit({
   skip: (req) => isDev && req.method === 'GET', // Skip GET requests in dev
 });
 
-// Apply rate limiting to all auth routes
-router.use(authLimiter);
+// POST /api/auth/register - rate limited
+router.post('/register', authLimiter, registerValidation, register);
 
-// POST /api/auth/register
-router.post('/register', registerValidation, register);
+// POST /api/auth/login - rate limited
+router.post('/login', authLimiter, loginValidation, login);
 
-// POST /api/auth/login
-router.post('/login', loginValidation, login);
-
-// POST /api/auth/logout
-router.post('/logout', logout);
+// POST /api/auth/logout - rate limited
+router.post('/logout', authLimiter, logout);
 
 // POST /api/auth/refresh
 router.post('/refresh', refresh);
