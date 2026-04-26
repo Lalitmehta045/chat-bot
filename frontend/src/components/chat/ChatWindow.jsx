@@ -61,19 +61,23 @@ export const ChatWindow = ({ onBack }) => {
     if (!socket || !selectedConversation) return;
 
     const handleNewMessage = (data) => {
-      if (data.message.conversation === selectedConversation._id) {
-        addMessage(data.message);
+      // Backend may emit either { message: ... } or the message object directly
+      const message = data?.message || data;
+      const msgConversationId = message?.conversation || message?.conversationId;
+      
+      if (msgConversationId === selectedConversation._id) {
+        addMessage(message);
         
-        const isOwnMessage = data.message.senderId?._id?.toString() === authUser?._id?.toString();
+        const isOwnMessage = message?.senderId?._id?.toString() === authUser?._id?.toString();
         
         // Mark as read if in current conversation
-        if (!isOwnMessage) {
-          emitMessageRead(data.message._id, selectedConversation._id);
+        if (!isOwnMessage && message?._id) {
+          emitMessageRead(message._id, selectedConversation._id);
         }
         
         // Show notification if not in this conversation
         if (document.hidden && !isOwnMessage) {
-          showNotification(data.message);
+          showNotification(message);
         }
       }
     };
