@@ -1,7 +1,8 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
-import { Loader2, MessageCircleMore } from 'lucide-react';
+import { MessageCircleMore } from 'lucide-react';
 import { useShallow } from 'zustand/react/shallow';
 import { MessageBubble } from './MessageBubble';
+import { Loader } from '@components/shared/Loader';
 import { useChatStore } from '@store/useChatStore';
 import { formatDateSeparator } from '@utils/formatTime';
 
@@ -264,9 +265,9 @@ export const MessageList = memo(({
       style={{ overscrollBehaviorY: 'contain' }}
       data-no-swipe-back="true"
     >
-      <div ref={sentinelRef} className="flex h-7 items-center justify-center">
+      <div ref={sentinelRef} className="flex h-12 items-center justify-center">
         {isLoadingMessages && (
-          <Loader2 className="h-4 w-4 animate-spin text-[var(--text-muted)]" />
+          <Loader size="md" />
         )}
       </div>
 

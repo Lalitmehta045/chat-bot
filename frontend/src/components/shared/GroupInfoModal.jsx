@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Users, UserPlus, UserMinus, Search, Loader2 } from 'lucide-react';
+import { X, Users, UserPlus, UserMinus, Search } from 'lucide-react';
 import { Avatar } from './Avatar';
+import { Loader } from './Loader';
 import { useAuthStore } from '@store/useAuthStore';
 import { useChatStore } from '@store/useChatStore';
 import axios from '@lib/axios';
@@ -176,7 +177,7 @@ export const GroupInfoModal = ({ conversation, isOpen, onClose }) => {
                   </div>
                   <div className="max-h-32 overflow-y-auto space-y-1">
                     {isSearching ? (
-                      <div className="flex justify-center py-2"><Loader2 className="w-4 h-4 animate-spin text-[var(--text-muted)]" /></div>
+                      <div className="flex justify-center py-2"><Loader size="sm" /></div>
                     ) : searchResults.length > 0 ? (
                       searchResults
                         .filter(u => !participants.find(p => p._id === u._id))

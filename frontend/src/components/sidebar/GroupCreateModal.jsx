@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Users, Camera, Search, Check, Loader2 } from 'lucide-react';
+import { X, Users, Camera, Search, Check } from 'lucide-react';
 import { Avatar } from '@components/shared/Avatar';
+import { Loader } from '@components/shared/Loader';
 import { useChatStore } from '@store/useChatStore';
 import axios from '@lib/axios';
 import toast from 'react-hot-toast';
@@ -203,7 +204,7 @@ export const GroupCreateModal = ({ isOpen, onClose }) => {
             <div className="space-y-1 max-h-48 overflow-y-auto">
               {isSearching ? (
                 <div className="flex items-center justify-center py-4">
-                  <Loader2 className="w-5 h-5 text-[var(--text-muted)] animate-spin" />
+                  <Loader size="md" />
                 </div>
               ) : searchResults.length > 0 ? (
                 searchResults
@@ -248,7 +249,7 @@ export const GroupCreateModal = ({ isOpen, onClose }) => {
               className="flex-1 px-4 py-2 rounded-lg gradient-primary text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isCreating ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader size="sm" />
               ) : (
                 'Create Group'
               )}

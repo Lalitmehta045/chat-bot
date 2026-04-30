@@ -11,6 +11,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { emitTypingStart, emitTypingStop } from '@lib/socket';
 import toast from 'react-hot-toast';
 import { ReplyPreviewBar } from './ReplyPreviewBar';
+import { Loader } from '@components/shared/Loader';
 
 export const MessageInput = ({
   conversationId,
@@ -292,7 +293,7 @@ export const MessageInput = ({
           } ${!canSend || isSending ? 'cursor-not-allowed' : 'hover:opacity-90'}`}
         >
           {isSending ? (
-            <Loader2 className="h-5 w-5 animate-spin" />
+            <Loader size="sm" />
           ) : (
             <Send className="h-5 w-5" />
           )}

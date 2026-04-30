@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, UserPlus, Loader2 } from 'lucide-react';
+import { Search, X, UserPlus } from 'lucide-react';
 import { Avatar } from '@components/shared/Avatar';
+import { Loader } from '@components/shared/Loader';
 import axios from '@lib/axios';
 import toast from 'react-hot-toast';
 import { useChatStore } from '@store/useChatStore';
@@ -96,7 +97,7 @@ export const UserSearch = ({ onClose, onSelectUser }) => {
           >
             {isLoading ? (
               <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-5 h-5 text-[var(--text-muted)] animate-spin" />
+                <Loader size="md" />
               </div>
             ) : results.length > 0 ? (
               <div className="py-2">

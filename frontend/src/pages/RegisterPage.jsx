@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Eye, EyeOff, MessageCircle, User, Camera } from 'lucide-react';
 import { useAuthStore } from '@store/useAuthStore';
 import toast from 'react-hot-toast';
+import { Loader } from '@components/shared/Loader';
 
 export const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -75,7 +76,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-y-auto bg-gradient-to-br from-violet-950 via-slate-900 to-black px-4 py-6 sm:px-6 sm:py-8">
+    <div className="relative flex w-full min-h-screen items-center justify-center overflow-y-auto bg-gradient-to-br from-violet-950 via-slate-900 to-black px-4 py-6 sm:px-6 sm:py-8">
       {/* Animated background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -281,7 +282,7 @@ export const RegisterPage = () => {
               className="w-full py-3.5 gradient-primary text-white font-semibold rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-6"
             >
               {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <Loader size="sm" />
               ) : (
                 'Create Account'
               )}

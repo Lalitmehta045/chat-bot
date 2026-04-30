@@ -18,11 +18,11 @@ import {
   Sun,
   Camera,
   Check,
-  Loader2,
   Eye,
   EyeOff,
   LogOut
 } from 'lucide-react';
+import { Loader } from '@components/shared/Loader';
 
 // Settings/Profile Drawer Component
 const SettingsDrawer = ({ isOpen, onClose }) => {
@@ -281,7 +281,7 @@ const SettingsDrawer = ({ isOpen, onClose }) => {
                     className="w-full py-3 gradient-primary text-white font-semibold rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader size="sm" />
                     ) : (
                       <>
                         <Check className="w-5 h-5" />
@@ -376,7 +376,7 @@ const SettingsDrawer = ({ isOpen, onClose }) => {
                     className="w-full py-3 gradient-primary text-white font-semibold rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader size="sm" />
                     ) : (
                       <>
                         <Lock className="w-5 h-5" />

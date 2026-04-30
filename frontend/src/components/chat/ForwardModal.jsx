@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, Loader2, Send, Inbox } from 'lucide-react';
+import { X, Search, Send, Inbox } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { Avatar } from '@components/shared/Avatar';
+import { Loader } from '@components/shared/Loader';
 import { useAuthStore } from '@store/useAuthStore';
 import { useChatStore } from '@store/useChatStore';
 
@@ -227,7 +228,7 @@ export const ForwardModal = ({ message, onClose }) => {
               }`}
             >
               <span className="inline-flex items-center gap-2">
-                {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                {loading && <Loader size="sm" />}
                 Forward
               </span>
             </button>
