@@ -64,44 +64,7 @@ export const ChatWindow = ({ onBack }) => {
     velocityX: 0,
   });
 
-  useEffect(() => {
-    const socket = getSocket();
-    if (!socket || !selectedConversation) return;
-
-    const handleNewMessage = (data) => {
-      const message = data?.message || data;
-      const messageConversationId = message?.conversation || message?.conversationId;
-
-      if (messageConversationId !== selectedConversation._id) return;
-
-      const isOwn =
-        message?.senderId?._id?.toString() === authUser?._id?.toString() ||
-        message?.senderId?.toString() === authUser?._id?.toString();
-
-      if (isOwn) return;
-
-      addMessage(message);
-
-      if (message?._id) {
-        emitMessageRead(message._id, selectedConversation._id);
-      }
-    };
-
-    const handleMessageSeen = (data) => {
-      updateMessageInStore(data.messageId, {
-        readBy: data.readBy || [],
-      });
-    };
-
-    socket.on('new_message', handleNewMessage);
-    socket.on('message_seen', handleMessageSeen);
-
-    return () => {
-      socket.off('new_message', handleNewMessage);
-      socket.off('message_seen', handleMessageSeen);
-    };
-  }, [selectedConversation?._id, authUser?._id, addMessage, updateMessageInStore]);
-
+  // Auto-mark as read effect
   useEffect(() => {
     if (!selectedConversation) return;
 

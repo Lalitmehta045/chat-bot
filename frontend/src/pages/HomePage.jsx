@@ -10,6 +10,7 @@ import { useGsapAnimation, gsapAnimations } from '@hooks/useGsapAnimation';
 import { Avatar } from '@components/shared/Avatar';
 import axios from '@lib/axios';
 import toast from 'react-hot-toast';
+import { SocketManager } from '@components/shared/SocketManager';
 import {
   ChevronRight,
   User,
@@ -522,6 +523,7 @@ export const HomePage = () => {
 
   return (
     <div ref={containerRef} className="relative min-h-dvh w-full overflow-hidden bg-[var(--bg-base)] transition-colors duration-300">
+      <SocketManager />
       {/* Animated Background Gradients */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="blob-gradient absolute -left-16 top-0 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl" />

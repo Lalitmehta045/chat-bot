@@ -62,6 +62,10 @@ module.exports = function socketHandler(io) {
       socket.broadcast.emit("user_online", userId);
       socket.emit("online_users", Array.from(onlineUsers.keys()));
 
+      socket.on("get_online_users", () => {
+        socket.emit("online_users", Array.from(onlineUsers.keys()));
+      });
+
       socket.on("join_conversation", async (conversationId) => {
         try {
           const conversation = await Conversation.findOne({
